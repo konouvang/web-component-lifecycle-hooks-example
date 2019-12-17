@@ -16,6 +16,7 @@ export class StockPrice {
   @State() stockUserInput: string;
   @State() stockInputValid = false;
   @State() error: string;
+  @State() initialStockSymbol: string;
 
   @Prop() stockSymbol: string;
 
@@ -65,6 +66,9 @@ export class StockPrice {
   componentDidLoad() {
     console.log('componentDidLoad');
     if (this.stockSymbol) {
+      this.initialStockSymbol = this.stockSymbol;
+      this.stockUserInput = this.stockSymbol;
+      this.stockInputValid = true;
       this.fetchStockPrice(this.stockSymbol);
     }
   }
@@ -75,6 +79,10 @@ export class StockPrice {
 
   componentDidUpdate() {
     console.log('componentDidUpdate');
+    if (this.stockSymbol !== this.initialStockSymbol) {
+      this.initialStockSymbol = this.stockSymbol;
+      this.fetchStockPrice(this.stockSymbol);
+    }
   }
 
   componentDidUnload() {

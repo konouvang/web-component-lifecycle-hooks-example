@@ -12,6 +12,9 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface UcStockFinder {}
+  interface UcStockFinderAttributes extends StencilHTMLAttributes {}
+
   interface UcStockPrice {
     'stockSymbol': string;
   }
@@ -22,13 +25,21 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'UcStockFinder': Components.UcStockFinder;
     'UcStockPrice': Components.UcStockPrice;
   }
 
   interface StencilIntrinsicElements {
+    'uc-stock-finder': Components.UcStockFinderAttributes;
     'uc-stock-price': Components.UcStockPriceAttributes;
   }
 
+
+  interface HTMLUcStockFinderElement extends Components.UcStockFinder, HTMLStencilElement {}
+  var HTMLUcStockFinderElement: {
+    prototype: HTMLUcStockFinderElement;
+    new (): HTMLUcStockFinderElement;
+  };
 
   interface HTMLUcStockPriceElement extends Components.UcStockPrice, HTMLStencilElement {}
   var HTMLUcStockPriceElement: {
@@ -37,10 +48,12 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'uc-stock-finder': HTMLUcStockFinderElement
     'uc-stock-price': HTMLUcStockPriceElement
   }
 
   interface ElementTagNameMap {
+    'uc-stock-finder': HTMLUcStockFinderElement;
     'uc-stock-price': HTMLUcStockPriceElement;
   }
 
